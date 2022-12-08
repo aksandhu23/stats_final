@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Amritpal Sandhu">
+<meta name="dcterms.date" content="2022-12-09">
+
+<title>2021 Air Quality in Oakland’s Wealthiest and Poorest Neighborhoods</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="blog_post_files/libs/clipboard/clipboard.min.js"></script>
+<script src="blog_post_files/libs/quarto-html/quarto.js"></script>
+<script src="blog_post_files/libs/quarto-html/popper.min.js"></script>
+<script src="blog_post_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="blog_post_files/libs/quarto-html/anchor.min.js"></script>
+<link href="blog_post_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="blog_post_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="blog_post_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="blog_post_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="blog_post_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">2021 Air Quality in Oakland’s Wealthiest and Poorest Neighborhoods</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Amritpal Sandhu </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 9, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>Oakland has historically been known for their poor air quality which has been exacerbated by the increase in vehicles on the road. East and West Oakland impacted mote then the wealthier northern region due to the proximity of major highways, the port of Oakland, railroad shops, and the local industry. This analysis will be looking into air quality from the wealthy regions and comparing them to the air quality from the poor neighborhoods of Oakland to see if there are any significant differences.</p>
+<p>More specifically PM 2.5 will be analyzed due to its detrimental impacts on the environment and human health especially respiratory issues such as asthma. In addition, the year 2021 will be evaluated to view the impacts of new Regulations post the Covid 19 pandemic as most places started opening up their businesses and commuting again.</p>
+<div class="cell">
+
+</div>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>Data from PurpleAir Monitors provide real-time air quality information as well as hourly, daily, weekly, and monthly averages. This is great for an analysis as hourly data can be much more precise and provide more accurate results of the location being evaluated.</p>
+<div class="cell">
+
+</div>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<div class="cell">
+
+</div>
+<p>Marina, Bower, FSL, and Sausal represent the 4 disadvantage neighborhoods. There are peaks in winter and early fall compared to spring and summer.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="blog_post_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Alameda, Holman, Marina, and Piedmont represent the 4 wealthy neighborhoods. The plots display a general trend across both poor neighborhoods and wealthy neighborhoods and better air quality in the spring and summer months.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="blog_post_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="time-series---classical-decomposition" class="level4">
+<h4 class="anchored" data-anchor-id="time-series---classical-decomposition">Time Series - Classical Decomposition</h4>
+<p>Since there seems to be a seasonality and trend to the data. I ran a classical decomposition to check seasonality separate from trend. Since the plots were similar, I took a look at FSL from the disadvantage neighborhood and Piedmont from the wealthier neighborhood and ran the analysis. Both decomposition models conclude the trend is driving the overall variation compared to seasonality.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="blog_post_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="blog_post_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+
+</div>
+</section>
+<section id="hypothesis-test" class="level4">
+<h4 class="anchored" data-anchor-id="hypothesis-test">Hypothesis Test</h4>
+<p>Null Hypothesis: No difference between poor and rich neighborhoods.</p>
+<p>Alternative Hypothesis: There is a difference between poor and rich neighborhoods.</p>
+<p>The first t-Test is looking at specific monitors, one from a wealthy neighborhood and another from a poor neighborhood. With a p-value of .002, which has a significance level of less than 5%, we can reject the null hypothesis.</p>
+<p>To compare, another t-Test was conducted to which averaged the four wealthy neighborhoods and the four poor neighborhoods respectively. That got a much higher p-value that was not statically significant, which meant we could not reject the null hypothesis.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  green_zones$pm2_5_ala and red_zones$pm2_5_bow
+t = -3.035, df = 711.23, p-value = 0.002493
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.649430 -0.782455
+sample estimates:
+mean of x mean of y 
+ 9.778493 11.994435 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  red_zones$PMean and green_zones$PMean
+t = 0.97955, df = 607.81, p-value = 0.3277
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.6238593  1.8655377
+sample estimates:
+mean of x mean of y 
+ 9.789116  9.168277 </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="discussion-and-future-research" class="level2">
+<h2 class="anchored" data-anchor-id="discussion-and-future-research">Discussion and Future Research</h2>
+<p>There is still much more to unpack and more testing would be required. The hypothesis test was inconclusive as comparing two separate air monitor had statistical significance, but once they were averaged the p-value was too high for their to be any significance.</p>
+<p>There were many limitations to the project. Since I focused on the year 2021, I was not able to measure seasonality as it should have been. The data had some missing values which could be due to monitor malfunctioning or being broken for a period of time. It is also worth noting that PurpleAir monitors are purchased and installed by individuals and many may not be able to afford them. Therefore, we may not have air monitor data from the most disadvantage neighborhoods to the extent the wealthier neighborhoods do.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>CalEPA. “Pollution and Prejudice.” ArcGIS StoryMaps, Esri, 17 Aug.&nbsp;2021, https://storymaps.arcgis.com/stories/f167b251809c43778a2f9f040f43d2f5.</p>
+<p>“PurpleAir: Real-Time Air Quality Monitoring.” PurpleAir, Inc., https://www2.purpleair.com/.</p>
+<p>“State of Global Air.” <em>Health Impacts of PM2.5 | State of Global Air</em>, https://www.stateofglobalair.org/health/pm.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
