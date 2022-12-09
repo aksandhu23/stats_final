@@ -12,13 +12,19 @@ code-block-bg: true
 code-block-border-left: "#6B5A75"
 ---
 
+```{r}
+knitr::include_graphics(here::here(file.path("pics", "Oakland.jpg")))
+```
+
+Photo: Oakland, CA Hotels - Marriott's Official Site
+
 ## Background
 
-Oakland has historically been known for their poor air quality which has been exacerbated by the increase in vehicles on the road. East and West Oakland impacted mote then the wealthier northern region due to the proximity of major highways, the port of Oakland, railroad shops, and the local industry. This analysis will be looking into air quality from the wealthy regions and comparing them to the air quality from the poor neighborhoods of Oakland to see if there are any significant differences.
+Oakland has historically been known for their poor air quality which has been exacerbated by the increase in vehicles on the road. East and West Oakland in particular are impacted more than the wealthier northern region due to the proximity of major highways, the port of Oakland, railroad shops, and the local industry. This analysis will be looking into air quality from the wealthy regions and comparing them to the air quality from the East/West regions of Oakland to see if there are any significant differences.
 
-More specifically PM 2.5 will be analyzed due to its detrimental impacts on the environment and human health especially respiratory issues such as asthma. In addition, the year 2021 will be evaluated to view the impacts of new Regulations post the Covid 19 pandemic as most places started opening up their businesses and commuting again.
+More specifically PM 2.5 will be analyzed due to its detrimental impacts on the environment and human health, especially respiratory issues such as asthma. In addition, the year 2021 will be evaluated to view the impacts of new Regulations implemented post the Covid-19 pandemic as most places went back to business as usual.
 
-```{r, warning = FALSE, echo = FALSE, message = FALSE}
+```{r, warning = FALSE, results='hide', message = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 # Load all the packages needed here
 library(tidyverse)
@@ -30,6 +36,9 @@ library(lubridate)
 library(janitor)
 library(here)
 library(ggplot2)
+library(sjPlot)
+library(rempsyc)
+library(broom)
 
 # Set the Root Directory, Data Directory, and Working Directory 
 rootdir <- ("C:/Users/asandhu/Desktop/MEDS/EDS-222-Statistics/")
@@ -39,9 +48,9 @@ setwd <- (file.path(rootdir, "Homework", "final_project", "Stats_Final_blog", "s
 
 ## Data
 
-Data from PurpleAir Monitors provide real-time air quality information as well as hourly, daily, weekly, and monthly averages. This is great for an analysis as hourly data can be much more precise and provide more accurate results of the location being evaluated.
+Data from [PurpleAir Monitors](https://www2.purpleair.com/){.uri} provides real-time air quality information along with hourly, daily, weekly, and monthly averages. This is great for a more precise analysis and getting to more accurate results of the location being evaluated.
 
-```{r, warning = FALSE, echo = FALSE, message = FALSE}
+```{r, warning = FALSE, results='hide', message = FALSE}
 #Read in the data
 marina_red <- read_csv(here("final_project_data", "5th_Avenue_Marina_Bldg_(37.788488-122.263106)_port.csv")) %>% clean_names()
 
@@ -64,9 +73,9 @@ hills_green <- read_csv(here("final_project_data", "Piedmont_Hills_(37.826523-12
 sausal_red <- read_csv(here("final_project_data", "Sausal_Street_(37.798625-122.220344)_hwy580.csv")) %>% clean_names()
 ```
 
-## Results 
+## Data Analysis
 
-```{r, warning = FALSE, echo = FALSE, message = FALSE}
+```{r, warning = FALSE, results='hide', message = FALSE}
 # Data Wrangling: Average PM 2.5 concentration by day for each monitoring sites
 marina_red_mean <- marina_red %>% 
   mutate(date = ymd_hms(created_at), pm2_5 = pm2_5_atm_ug_m3) %>% 
@@ -135,41 +144,41 @@ red <- mean((sausal_red_mean$pm2_5_sau + oak_red_mean$pm2_5_oak + fsl_red_mean$p
 green <- mean((piedmont_green_mean$pm2_5_pie + marina_green_mean$pm2_5_mag + holman_green_mean$pm2_5_hol + hills_green_mean$pm2_5_hills + alameda_green_mean$pm2_5_ala)/5)
 ```
 
-Marina, Bower, FSL, and Sausal represent the 4 disadvantage neighborhoods. There are peaks in winter and early fall compared to spring and summer.
+Marina, Bower, FSL, and Sausal represent the four disadvantage neighborhoods. There are peaks in winter and early fall compared to spring and summer months.
 
-```{r, warning = FALSE, echo = FALSE, message = FALSE}
+```{r,fig.width = 5, fig.height = 5, warning = FALSE, results='hide', message = FALSE}
 # Plot the individual red zone areas and display side by side
-marina_red_plot <- ggplot(data = marina_red_mean, aes(x = date, y = pm2_5_mar)) + geom_point() + labs(title = "2021 PM 2.5 concentration in Marina", x = "Date", y = "PM2.5")
+marina_red_plot <- ggplot(data = marina_red_mean, aes(x = date, y = pm2_5_mar)) + geom_point() + labs(title = "2021 PM 2.5 concentration in Marina", x = "Date", y = "PM2.5") + theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))
 
-bower_red_plot <- ggplot(data = bower_red_mean, aes(x = date, y = pm2_5_bow)) + geom_point() + labs(title = "2021 PM 2.5 concentration in Bower", x = "Date", y = "PM2.5")
+bower_red_plot <- ggplot(data = bower_red_mean, aes(x = date, y = pm2_5_bow)) + geom_point() + labs(title = "2021 PM 2.5 concentration in Bower", x = "Date", y = "PM2.5") + theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))
 
-fsl_red_plot <- ggplot(data = fsl_red_mean, aes(x = date, y = pm2_5_fsl)) + geom_point() + labs(title = "2021 PM 2.5 concentration in FSL", x = "Date", y = "PM2.5")
+fsl_red_plot <- ggplot(data = fsl_red_mean, aes(x = date, y = pm2_5_fsl)) + geom_point() + labs(title = "2021 PM 2.5 concentration in FSL", x = "Date", y = "PM2.5") +  theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))
 
-sausal_red_plot <- ggplot(data = sausal_red_mean, aes(x = date, y = pm2_5_sau)) + geom_point() + labs(title = "2021 PM 2.5 concentration in Sausal", x = "Date", y = "PM2.5")
+sausal_red_plot <- ggplot(data = sausal_red_mean, aes(x = date, y = pm2_5_sau)) + geom_point() + labs(title = "2021 PM 2.5 concentration in Sausal", x = "Date", y = "PM2.5") + theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))
 
 gridExtra::grid.arrange(marina_red_plot, bower_red_plot, fsl_red_plot, sausal_red_plot)
 ```
 
-Alameda, Holman, Marina, and Piedmont represent the 4 wealthy neighborhoods. The plots display a general trend across both poor neighborhoods and wealthy neighborhoods and better air quality in the spring and summer months.
+Alameda, Holman, Marina, and Piedmont represent the four wealthy neighborhoods. The plots display a general trend across both poor neighborhoods and wealthy neighborhoods and better air quality in the spring and summer months.
 
-```{r, warning = FALSE, echo = FALSE, message = FALSE}
+```{r, fig.width = 5, fig.height = 5, warning = FALSE, results='hide', message = FALSE}
 # # Plot the individual green zone areas and display side by side
-alameda_green_plot <- ggplot(data = alameda_green_mean, aes(x = date, y = pm2_5_ala)) + geom_point() + labs(title = "2021 PM 2.5 concentration in Alameda", x = "Date", y = "PM2.5")
+alameda_green_plot <- ggplot(data = alameda_green_mean, aes(x = date, y = pm2_5_ala)) + geom_point() + labs(title = "2021 PM 2.5 concentration in Alameda", x = "Date", y = "PM2.5") + theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))
 
-holman_green_plot <- ggplot(data = holman_green_mean, aes(x = date, y = pm2_5_hol)) + geom_point() + labs(title = "2021 PM 2.5 concentration in Holman", x = "Date", y = "PM2.5")
+holman_green_plot <- ggplot(data = holman_green_mean, aes(x = date, y = pm2_5_hol)) + geom_point() + labs(title = "2021 PM 2.5 concentration in Holman", x = "Date", y = "PM2.5") +theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))
 
-marina_green_plot <- ggplot(data = marina_green_mean, aes(x = date, y = pm2_5_mag)) + geom_point() + labs(title = "2021 PM 2.5 concentration in MarinaG", x = "Date", y = "PM2.5")
+marina_green_plot <- ggplot(data = marina_green_mean, aes(x = date, y = pm2_5_mag)) + geom_point() + labs(title = "2021 PM 2.5 concentration in MarinaG", x = "Date", y = "PM2.5") + theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))
 
-piedmont_green_plot <- ggplot(data = piedmont_green_mean, aes(x = date, y = pm2_5_pie)) + geom_point() + labs(title = "2021 PM 2.5 concentration in Piedmont", x = "Date", y = "PM2.5")
+piedmont_green_plot <- ggplot(data = piedmont_green_mean, aes(x = date, y = pm2_5_pie)) + geom_point() + labs(title = "2021 PM 2.5 concentration in Piedmont", x = "Date", y = "PM2.5") + theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))
 
 gridExtra::grid.arrange(alameda_green_plot, holman_green_plot, marina_green_plot, piedmont_green_plot)
 ```
 
 #### Time Series - Classical Decomposition
 
-Since there seems to be a seasonality and trend to the data. I ran a classical decomposition to check seasonality separate from trend. Since the plots were similar, I took a look at FSL from the disadvantage neighborhood and Piedmont from the wealthier neighborhood and ran the analysis. Both decomposition models conclude the trend is driving the overall variation compared to seasonality.
+Since there seemed to be seasonality and trend to the data, I ran a classical decomposition to check seasonality separate from trend. Since the plots were similar, I took a look at FSL from the disadvantage neighborhood and Piedmont from the wealthier neighborhood and ran the analysis. Both decomposition models conclude that trend is driving the overall variation compared to seasonality.
 
-```{r, warning = FALSE, echo = FALSE, message = FALSE}
+```{r, fig.width = 5, fig.height = 5, warning = FALSE, results='hide', message = FALSE}
 # Take a look at 2 air monitors to view the classical decomposition to recover seasonality separately from trend 
 fsl <- as_tsibble(fsl_red_mean, index = date) |> 
   model(classical_decomposition(pm2_5_fsl, type = "additive")) |> 
@@ -183,7 +192,7 @@ plot(fsl)
 plot(pie)
 ```
 
-```{r, warning = FALSE, echo = FALSE, message = FALSE}
+```{r, warning = FALSE, results='hide', message = FALSE}
 # Merging the data frames together in order to complete hypothesis test 
 test <- merge(alameda_green_mean, holman_green_mean, all = T)
 test2 <- merge(test, marina_green_mean, all = T)
@@ -205,22 +214,28 @@ Null Hypothesis: No difference between poor and rich neighborhoods.
 
 Alternative Hypothesis: There is a difference between poor and rich neighborhoods.
 
-The first t-Test is looking at specific monitors, one from a wealthy neighborhood and another from a poor neighborhood. With a p-value of .002, which has a significance level of less than 5%, we can reject the null hypothesis.
+The first t-test is looking at specific monitors, one from a wealthy neighborhood and another from a poor neighborhood. With a p-value of .002, which has a significance level of less than 5%, we can reject the null hypothesis.
 
-To compare, another t-Test was conducted to which averaged the four wealthy neighborhoods and the four poor neighborhoods respectively. That got a much higher p-value that was not statically significant, which meant we could not reject the null hypothesis.
+To compare, another t-test was conducted which averaged the four wealthy neighborhoods and the four poor neighborhoods, respectively. The results produced a much higher p-value that was not statically significant, which meant we could not reject the null hypothesis.
 
-```{r, warning = FALSE, echo = FALSE, message = FALSE}
+```{r}
 # Hypothesis Test
-t.test(x = green_zones$pm2_5_ala, y = red_zones$pm2_5_bow)
+individual <- t.test(x = green_zones$pm2_5_ala, y = red_zones$pm2_5_bow)
 
-t.test(x = red_zones$PMean, y = green_zones$PMean)
+mean <- t.test(x = red_zones$PMean, y = green_zones$PMean)
+
+stats.table <- tidy(individual, conf.int = TRUE)
+nice_table(stats.table, broom = "t.test")
+
+stats.table2 <- tidy(mean, conf.int = TRUE)
+nice_table(stats.table2, broom = "t.test")
 ```
 
-## Discussion and Future Research
+## Discussion
 
-There is still much more to unpack and more testing would be required. The hypothesis test was inconclusive as comparing two separate air monitor had statistical significance, but once they were averaged the p-value was too high for their to be any significance.
+There is still much more to unpack and more testing would be required to make conclusions. The hypothesis test was inconclusive as comparing a wealthy neighborhood to a poor neighborhood showed statistical significance. However, once the data was averaged for all the neighborhoods being tested, the p-value was too high for there to be any significance.
 
-There were many limitations to the project. Since I focused on the year 2021, I was not able to measure seasonality as it should have been. The data had some missing values which could be due to monitor malfunctioning or being broken for a period of time. It is also worth noting that PurpleAir monitors are purchased and installed by individuals and many may not be able to afford them. Therefore, we may not have air monitor data from the most disadvantage neighborhoods to the extent the wealthier neighborhoods do.
+There were many limitations to the project. For example, I focused on the year 2021, only that one year was plotted in the classical decomposition model. Hence, this does not interpret an accurate representation of seasonality because historical data may be required for the model. Some monitors were also missing some data which could be due to monitor malfunctioning or being broken for a period of time. It is also worth noting that PurpleAir monitors are purchased and installed by individuals and many may not be able to afford them. Therefore, we may not have air monitor data from the most disadvantage neighborhoods to the extent the wealthier neighborhoods do.
 
 ## References
 

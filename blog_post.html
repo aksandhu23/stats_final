@@ -17,6 +17,69 @@ span.underline{text-decoration: underline;}
 div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -30,6 +93,7 @@ ul.task-list{list-style: none;}
 <script src="blog_post_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="blog_post_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="blog_post_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="blog_post_files/libs/tabwid-1.1.2/tabwid.css" rel="stylesheet">
 
 
 </head>
@@ -68,93 +132,269 @@ ul.task-list{list-style: none;}
 
 </header>
 
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="fu">file.path</span>(<span class="st">"pics"</span>, <span class="st">"Oakland.jpg"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="pics/Oakland.jpg" class="img-fluid" width="1280"></p>
+</div>
+</div>
+<p>Photo: Oakland, CA Hotels - Marriott’s Official Site</p>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>Oakland has historically been known for their poor air quality which has been exacerbated by the increase in vehicles on the road. East and West Oakland impacted mote then the wealthier northern region due to the proximity of major highways, the port of Oakland, railroad shops, and the local industry. This analysis will be looking into air quality from the wealthy regions and comparing them to the air quality from the poor neighborhoods of Oakland to see if there are any significant differences.</p>
-<p>More specifically PM 2.5 will be analyzed due to its detrimental impacts on the environment and human health especially respiratory issues such as asthma. In addition, the year 2021 will be evaluated to view the impacts of new Regulations post the Covid 19 pandemic as most places started opening up their businesses and commuting again.</p>
+<p>Oakland has historically been known for their poor air quality which has been exacerbated by the increase in vehicles on the road. East and West Oakland in particular are impacted more than the wealthier northern region due to the proximity of major highways, the port of Oakland, railroad shops, and the local industry. This analysis will be looking into air quality from the wealthy regions and comparing them to the air quality from the East/West regions of Oakland to see if there are any significant differences.</p>
+<p>More specifically PM 2.5 will be analyzed due to its detrimental impacts on the environment and human health, especially respiratory issues such as asthma. In addition, the year 2021 will be evaluated to view the impacts of new Regulations implemented post the Covid-19 pandemic as most places went back to business as usual.</p>
 <div class="cell">
-
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Load all the packages needed here</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tufte)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(feasts)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rempsyc)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the Root Directory, Data Directory, and Working Directory </span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>rootdir <span class="ot">&lt;-</span> (<span class="st">"C:/Users/asandhu/Desktop/MEDS/EDS-222-Statistics/"</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>datadir <span class="ot">&lt;-</span> <span class="fu">file.path</span>(rootdir, <span class="st">"Data"</span>, <span class="st">"final_project"</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>setwd <span class="ot">&lt;-</span> (<span class="fu">file.path</span>(rootdir, <span class="st">"Homework"</span>, <span class="st">"final_project"</span>, <span class="st">"Stats_Final_blog"</span>, <span class="st">"stats_final"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
-<p>Data from PurpleAir Monitors provide real-time air quality information as well as hourly, daily, weekly, and monthly averages. This is great for an analysis as hourly data can be much more precise and provide more accurate results of the location being evaluated.</p>
+<p>Data from <a href="https://www2.purpleair.com/" class="uri">PurpleAir Monitors</a> provides real-time air quality information along with hourly, daily, weekly, and monthly averages. This is great for a more precise analysis and getting to more accurate results of the location being evaluated.</p>
 <div class="cell">
-
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Read in the data</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>marina_red <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"final_project_data"</span>, <span class="st">"5th_Avenue_Marina_Bldg_(37.788488-122.263106)_port.csv"</span>)) <span class="sc">%&gt;%</span> <span class="fu">clean_names</span>()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>alameda_green <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"final_project_data"</span>, <span class="st">"Alameda_Landing_(37.789079-122.28284)_south.csv"</span>)) <span class="sc">%&gt;%</span> <span class="fu">clean_names</span>()</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>bower_red <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"final_project_data"</span>, <span class="st">"Bower_House_(37.803884-122.297151)_hwy880.csv"</span>)) <span class="sc">%&gt;%</span> <span class="fu">clean_names</span>()</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>oak_red <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"final_project_data"</span>, <span class="st">"DBA_OAK_(37.811266-122.273968)_hwy980.csv"</span>)) <span class="sc">%&gt;%</span> <span class="fu">clean_names</span>()</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>fsl_red <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"final_project_data"</span>, <span class="st">"FSL_(37.795078-122.270519)_highway.csv"</span>)) <span class="sc">%&gt;%</span> <span class="fu">clean_names</span>()</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>holman_green <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"final_project_data"</span>, <span class="st">"Holman_Road_(37.80638-122.229373)_richwy580.csv"</span>)) <span class="sc">%&gt;%</span> <span class="fu">clean_names</span>()</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>marina_green <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"final_project_data"</span>,<span class="st">"Marina_drive_(37.767074-122.228422)_southwater.csv"</span>)) <span class="sc">%&gt;%</span> <span class="fu">clean_names</span>()</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>piedmont_green <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"final_project_data"</span>, <span class="st">"Piedmont_(37.823653-122.230868)_rich.csv"</span>)) <span class="sc">%&gt;%</span> <span class="fu">clean_names</span>()</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>hills_green <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"final_project_data"</span>, <span class="st">"Piedmont_Hills_(37.826523-122.213795)_richwy13.csv"</span>)) <span class="sc">%&gt;%</span> <span class="fu">clean_names</span>()</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>sausal_red <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"final_project_data"</span>, <span class="st">"Sausal_Street_(37.798625-122.220344)_hwy580.csv"</span>)) <span class="sc">%&gt;%</span> <span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
-<section id="results" class="level2">
-<h2 class="anchored" data-anchor-id="results">Results</h2>
+<section id="data-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="data-analysis">Data Analysis</h2>
 <div class="cell">
-
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data Wrangling: Average PM 2.5 concentration by day for each monitoring sites</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>marina_red_mean <span class="ot">&lt;-</span> marina_red <span class="sc">%&gt;%</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd_hms</span>(created_at), <span class="at">pm2_5 =</span> pm2_5_atm_ug_m3) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd</span>(<span class="fu">paste0</span>(<span class="fu">year</span>(date), <span class="st">"-"</span>, <span class="fu">month</span>(date), <span class="st">"-"</span>, <span class="fu">day</span>(date)))) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(date) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pm2_5_mar =</span> <span class="fu">mean</span>(pm2_5, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>alameda_green_mean <span class="ot">&lt;-</span> alameda_green <span class="sc">%&gt;%</span> </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd_hms</span>(created_at), <span class="at">pm2_5 =</span> pm2_5_atm_ug_m3) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd</span>(<span class="fu">paste0</span>(<span class="fu">year</span>(date), <span class="st">"-"</span>, <span class="fu">month</span>(date), <span class="st">"-"</span>, <span class="fu">day</span>(date)))) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(date) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pm2_5_ala =</span> <span class="fu">mean</span>(pm2_5, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>bower_red_mean <span class="ot">&lt;-</span> bower_red <span class="sc">%&gt;%</span> </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd_hms</span>(created_at), <span class="at">pm2_5 =</span> pm2_5_atm_ug_m3) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd</span>(<span class="fu">paste0</span>(<span class="fu">year</span>(date), <span class="st">"-"</span>, <span class="fu">month</span>(date), <span class="st">"-"</span>, <span class="fu">day</span>(date)))) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(date) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pm2_5_bow =</span> <span class="fu">mean</span>(pm2_5, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>fsl_red_mean <span class="ot">&lt;-</span> fsl_red <span class="sc">%&gt;%</span> </span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd_hms</span>(created_at), <span class="at">pm2_5 =</span> pm2_5_atm_ug_m3) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd</span>(<span class="fu">paste0</span>(<span class="fu">year</span>(date), <span class="st">"-"</span>, <span class="fu">month</span>(date), <span class="st">"-"</span>, <span class="fu">day</span>(date)))) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(date) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pm2_5_fsl =</span> <span class="fu">mean</span>(pm2_5, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>hills_green_mean <span class="ot">&lt;-</span> hills_green <span class="sc">%&gt;%</span> </span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd_hms</span>(created_at), <span class="at">pm2_5 =</span> pm2_5_atm_ug_m3) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd</span>(<span class="fu">paste0</span>(<span class="fu">year</span>(date), <span class="st">"-"</span>, <span class="fu">month</span>(date), <span class="st">"-"</span>, <span class="fu">day</span>(date)))) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(date) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pm2_5_hills =</span> <span class="fu">mean</span>(pm2_5, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>holman_green_mean <span class="ot">&lt;-</span> holman_green <span class="sc">%&gt;%</span> </span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd_hms</span>(created_at), <span class="at">pm2_5 =</span> pm2_5_atm_ug_m3) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd</span>(<span class="fu">paste0</span>(<span class="fu">year</span>(date), <span class="st">"-"</span>, <span class="fu">month</span>(date), <span class="st">"-"</span>, <span class="fu">day</span>(date)))) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(date) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pm2_5_hol =</span> <span class="fu">mean</span>(pm2_5, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>marina_green_mean <span class="ot">&lt;-</span> marina_green <span class="sc">%&gt;%</span> </span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd_hms</span>(created_at), <span class="at">pm2_5 =</span> pm2_5_atm_ug_m3) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd</span>(<span class="fu">paste0</span>(<span class="fu">year</span>(date), <span class="st">"-"</span>, <span class="fu">month</span>(date), <span class="st">"-"</span>, <span class="fu">day</span>(date)))) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(date) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pm2_5_mag =</span> <span class="fu">mean</span>(pm2_5, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>oak_red_mean <span class="ot">&lt;-</span> oak_red <span class="sc">%&gt;%</span> </span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd_hms</span>(created_at), <span class="at">pm2_5 =</span> pm2_5_atm_ug_m3) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd</span>(<span class="fu">paste0</span>(<span class="fu">year</span>(date), <span class="st">"-"</span>, <span class="fu">month</span>(date), <span class="st">"-"</span>, <span class="fu">day</span>(date)))) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(date) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pm2_5_oak =</span> <span class="fu">mean</span>(pm2_5, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>piedmont_green_mean <span class="ot">&lt;-</span> piedmont_green <span class="sc">%&gt;%</span> </span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd_hms</span>(created_at), <span class="at">pm2_5 =</span> pm2_5_atm_ug_m3) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd</span>(<span class="fu">paste0</span>(<span class="fu">year</span>(date), <span class="st">"-"</span>, <span class="fu">month</span>(date), <span class="st">"-"</span>, <span class="fu">day</span>(date)))) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(date) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pm2_5_pie =</span> <span class="fu">mean</span>(pm2_5, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>sausal_red_mean <span class="ot">&lt;-</span> sausal_red <span class="sc">%&gt;%</span> </span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd_hms</span>(created_at), <span class="at">pm2_5 =</span> pm2_5_atm_ug_m3) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd</span>(<span class="fu">paste0</span>(<span class="fu">year</span>(date), <span class="st">"-"</span>, <span class="fu">month</span>(date), <span class="st">"-"</span>, <span class="fu">day</span>(date)))) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(date) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pm2_5_sau =</span> <span class="fu">mean</span>(pm2_5, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Take the mean of the red zone communites </span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>red <span class="ot">&lt;-</span> <span class="fu">mean</span>((sausal_red_mean<span class="sc">$</span>pm2_5_sau <span class="sc">+</span> oak_red_mean<span class="sc">$</span>pm2_5_oak <span class="sc">+</span> fsl_red_mean<span class="sc">$</span>pm2_5_fsl <span class="sc">+</span> bower_red_mean<span class="sc">$</span>pm2_5_bow <span class="sc">+</span> marina_red_mean<span class="sc">$</span>pm2_5_mar)<span class="sc">/</span><span class="dv">5</span>)</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Take the mean of the green zone communities </span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>green <span class="ot">&lt;-</span> <span class="fu">mean</span>((piedmont_green_mean<span class="sc">$</span>pm2_5_pie <span class="sc">+</span> marina_green_mean<span class="sc">$</span>pm2_5_mag <span class="sc">+</span> holman_green_mean<span class="sc">$</span>pm2_5_hol <span class="sc">+</span> hills_green_mean<span class="sc">$</span>pm2_5_hills <span class="sc">+</span> alameda_green_mean<span class="sc">$</span>pm2_5_ala)<span class="sc">/</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<p>Marina, Bower, FSL, and Sausal represent the 4 disadvantage neighborhoods. There are peaks in winter and early fall compared to spring and summer.</p>
+<p>Marina, Bower, FSL, and Sausal represent the four disadvantage neighborhoods. There are peaks in winter and early fall compared to spring and summer months.</p>
 <div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the individual red zone areas and display side by side</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>marina_red_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> marina_red_mean, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> pm2_5_mar)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"2021 PM 2.5 concentration in Marina"</span>, <span class="at">x =</span> <span class="st">"Date"</span>, <span class="at">y =</span> <span class="st">"PM2.5"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>bower_red_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> bower_red_mean, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> pm2_5_bow)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"2021 PM 2.5 concentration in Bower"</span>, <span class="at">x =</span> <span class="st">"Date"</span>, <span class="at">y =</span> <span class="st">"PM2.5"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>fsl_red_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> fsl_red_mean, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> pm2_5_fsl)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"2021 PM 2.5 concentration in FSL"</span>, <span class="at">x =</span> <span class="st">"Date"</span>, <span class="at">y =</span> <span class="st">"PM2.5"</span>) <span class="sc">+</span>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>sausal_red_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> sausal_red_mean, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> pm2_5_sau)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"2021 PM 2.5 concentration in Sausal"</span>, <span class="at">x =</span> <span class="st">"Date"</span>, <span class="at">y =</span> <span class="st">"PM2.5"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(marina_red_plot, bower_red_plot, fsl_red_plot, sausal_red_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-<p><img src="blog_post_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<p><img src="blog_post_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="480"></p>
 </div>
 </div>
-<p>Alameda, Holman, Marina, and Piedmont represent the 4 wealthy neighborhoods. The plots display a general trend across both poor neighborhoods and wealthy neighborhoods and better air quality in the spring and summer months.</p>
+<p>Alameda, Holman, Marina, and Piedmont represent the four wealthy neighborhoods. The plots display a general trend across both poor neighborhoods and wealthy neighborhoods and better air quality in the spring and summer months.</p>
 <div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># # Plot the individual green zone areas and display side by side</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>alameda_green_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> alameda_green_mean, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> pm2_5_ala)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"2021 PM 2.5 concentration in Alameda"</span>, <span class="at">x =</span> <span class="st">"Date"</span>, <span class="at">y =</span> <span class="st">"PM2.5"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>holman_green_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> holman_green_mean, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> pm2_5_hol)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"2021 PM 2.5 concentration in Holman"</span>, <span class="at">x =</span> <span class="st">"Date"</span>, <span class="at">y =</span> <span class="st">"PM2.5"</span>) <span class="sc">+</span><span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>marina_green_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> marina_green_mean, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> pm2_5_mag)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"2021 PM 2.5 concentration in MarinaG"</span>, <span class="at">x =</span> <span class="st">"Date"</span>, <span class="at">y =</span> <span class="st">"PM2.5"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>piedmont_green_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> piedmont_green_mean, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> pm2_5_pie)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"2021 PM 2.5 concentration in Piedmont"</span>, <span class="at">x =</span> <span class="st">"Date"</span>, <span class="at">y =</span> <span class="st">"PM2.5"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(alameda_green_plot, holman_green_plot, marina_green_plot, piedmont_green_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-<p><img src="blog_post_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<p><img src="blog_post_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="480"></p>
 </div>
 </div>
 <section id="time-series---classical-decomposition" class="level4">
 <h4 class="anchored" data-anchor-id="time-series---classical-decomposition">Time Series - Classical Decomposition</h4>
-<p>Since there seems to be a seasonality and trend to the data. I ran a classical decomposition to check seasonality separate from trend. Since the plots were similar, I took a look at FSL from the disadvantage neighborhood and Piedmont from the wealthier neighborhood and ran the analysis. Both decomposition models conclude the trend is driving the overall variation compared to seasonality.</p>
+<p>Since there seemed to be seasonality and trend to the data, I ran a classical decomposition to check seasonality separate from trend. Since the plots were similar, I took a look at FSL from the disadvantage neighborhood and Piedmont from the wealthier neighborhood and ran the analysis. Both decomposition models conclude that trend is driving the overall variation compared to seasonality.</p>
 <div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Take a look at 2 air monitors to view the classical decomposition to recover seasonality separately from trend </span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>fsl <span class="ot">&lt;-</span> <span class="fu">as_tsibble</span>(fsl_red_mean, <span class="at">index =</span> date) <span class="sc">|&gt;</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">classical_decomposition</span>(pm2_5_fsl, <span class="at">type =</span> <span class="st">"additive"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">components</span>() <span class="sc">|&gt;</span> <span class="fu">autoplot</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"PM 2.5 in 2021"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>pie <span class="ot">&lt;-</span> <span class="fu">as_tsibble</span>(piedmont_green_mean, <span class="at">index =</span> date) <span class="sc">|&gt;</span> </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">classical_decomposition</span>(pm2_5_pie, <span class="at">type =</span> <span class="st">"additive"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">components</span>() <span class="sc">|&gt;</span> <span class="fu">autoplot</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"PM 2.5 in 2021"</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fsl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-<p><img src="blog_post_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<p><img src="blog_post_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="480"></p>
 </div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pie)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-<p><img src="blog_post_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid" width="672"></p>
+<p><img src="blog_post_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid" width="480"></p>
 </div>
 </div>
 <div class="cell">
-
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Merging the data frames together in order to complete hypothesis test </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">merge</span>(alameda_green_mean, holman_green_mean, <span class="at">all =</span> T)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>test2 <span class="ot">&lt;-</span> <span class="fu">merge</span>(test, marina_green_mean, <span class="at">all =</span> T)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>green_zones <span class="ot">&lt;-</span> <span class="fu">merge</span>(test2, piedmont_green_mean,<span class="at">all =</span> T)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>green_zones<span class="sc">$</span>PMean <span class="ot">&lt;-</span> <span class="fu">apply</span>(green_zones[,<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>], <span class="dv">1</span>, mean)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>test5 <span class="ot">&lt;-</span> <span class="fu">merge</span>(marina_red_mean, bower_red_mean, <span class="at">all =</span>T)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>test6 <span class="ot">&lt;-</span> <span class="fu">merge</span>(test5,fsl_red_mean, <span class="at">all =</span> T)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>red_zones <span class="ot">&lt;-</span> <span class="fu">merge</span>(test6, sausal_red_mean, <span class="at">all =</span> T)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>red_zones<span class="sc">$</span>PMean <span class="ot">&lt;-</span> <span class="fu">apply</span>(red_zones[,<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>], <span class="dv">1</span>, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="hypothesis-test" class="level4">
 <h4 class="anchored" data-anchor-id="hypothesis-test">Hypothesis Test</h4>
 <p>Null Hypothesis: No difference between poor and rich neighborhoods.</p>
 <p>Alternative Hypothesis: There is a difference between poor and rich neighborhoods.</p>
-<p>The first t-Test is looking at specific monitors, one from a wealthy neighborhood and another from a poor neighborhood. With a p-value of .002, which has a significance level of less than 5%, we can reject the null hypothesis.</p>
-<p>To compare, another t-Test was conducted to which averaged the four wealthy neighborhoods and the four poor neighborhoods respectively. That got a much higher p-value that was not statically significant, which meant we could not reject the null hypothesis.</p>
+<p>The first t-test is looking at specific monitors, one from a wealthy neighborhood and another from a poor neighborhood. With a p-value of .002, which has a significance level of less than 5%, we can reject the null hypothesis.</p>
+<p>To compare, another t-test was conducted which averaged the four wealthy neighborhoods and the four poor neighborhoods, respectively. The results produced a much higher p-value that was not statically significant, which meant we could not reject the null hypothesis.</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Welch Two Sample t-test
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hypothesis Test</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>individual <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">x =</span> green_zones<span class="sc">$</span>pm2_5_ala, <span class="at">y =</span> red_zones<span class="sc">$</span>pm2_5_bow)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">x =</span> red_zones<span class="sc">$</span>PMean, <span class="at">y =</span> green_zones<span class="sc">$</span>PMean)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>stats.table <span class="ot">&lt;-</span> <span class="fu">tidy</span>(individual, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">nice_table</span>(stats.table, <span class="at">broom =</span> <span class="st">"t.test"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
 
-data:  green_zones$pm2_5_ala and red_zones$pm2_5_bow
-t = -3.035, df = 711.23, p-value = 0.002493
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- -3.649430 -0.782455
-sample estimates:
-mean of x mean of y 
- 9.778493 11.994435 </code></pre>
+<div class="tabwid"><style>.cl-cf9a72f4{table-layout:auto;}.cl-cf79cee6{font-family:'Times New Roman';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-cf79cf22{font-family:'Times New Roman';font-size:12pt;font-weight:normal;font-style:italic;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-cf79cf40{font-family:'Times New Roman';font-size:7.2pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;top:3.6pt;}.cl-cf8a4140{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 2;background-color:transparent;}.cl-cf8ac458{background-color:transparent;vertical-align: middle;border-bottom: 0.5pt solid rgba(0, 0, 0, 1.00);border-top: 0.5pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-cf8ac480{background-color:transparent;vertical-align: middle;border-bottom: 0.5pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class="cl-cf9a72f4"><thead><tr style="overflow-wrap:break-word;"><th class="cl-cf8ac458"><p class="cl-cf8a4140"><span class="cl-cf79cee6">Method</span></p></th><th class="cl-cf8ac458"><p class="cl-cf8a4140"><span class="cl-cf79cee6">Alternative</span></p></th><th class="cl-cf8ac458"><p class="cl-cf8a4140"><span class="cl-cf79cee6">Mean 1</span></p></th><th class="cl-cf8ac458"><p class="cl-cf8a4140"><span class="cl-cf79cee6">Mean 2</span></p></th><th class="cl-cf8ac458"><p class="cl-cf8a4140"><span class="cl-cf79cf22">M</span><span class="cl-cf79cf40">1</span><span class="cl-cf79cee6"> - </span><span class="cl-cf79cf22">M</span><span class="cl-cf79cf40">2</span></p></th><th class="cl-cf8ac458"><p class="cl-cf8a4140"><span class="cl-cf79cf22">t</span></p></th><th class="cl-cf8ac458"><p class="cl-cf8a4140"><span class="cl-cf79cf22">df</span></p></th><th class="cl-cf8ac458"><p class="cl-cf8a4140"><span class="cl-cf79cf22">p</span></p></th><th class="cl-cf8ac458"><p class="cl-cf8a4140"><span class="cl-cf79cee6">95% CI</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-cf8ac480"><p class="cl-cf8a4140"><span class="cl-cf79cee6">Welch Two Sample t-test</span></p></td><td class="cl-cf8ac480"><p class="cl-cf8a4140"><span class="cl-cf79cee6">two.sided</span></p></td><td class="cl-cf8ac480"><p class="cl-cf8a4140"><span class="cl-cf79cee6">9.78</span></p></td><td class="cl-cf8ac480"><p class="cl-cf8a4140"><span class="cl-cf79cee6">11.99</span></p></td><td class="cl-cf8ac480"><p class="cl-cf8a4140"><span class="cl-cf79cee6">-2.22</span></p></td><td class="cl-cf8ac480"><p class="cl-cf8a4140"><span class="cl-cf79cee6">-3.03</span></p></td><td class="cl-cf8ac480"><p class="cl-cf8a4140"><span class="cl-cf79cee6">711.23</span></p></td><td class="cl-cf8ac480"><p class="cl-cf8a4140"><span class="cl-cf79cee6">.002</span></p></td><td class="cl-cf8ac480"><p class="cl-cf8a4140"><span class="cl-cf79cee6">[-3.65, -0.78]</span></p></td></tr></tbody></table></div>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Welch Two Sample t-test
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stats.table2 <span class="ot">&lt;-</span> <span class="fu">tidy</span>(mean, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nice_table</span>(stats.table2, <span class="at">broom =</span> <span class="st">"t.test"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
 
-data:  red_zones$PMean and green_zones$PMean
-t = 0.97955, df = 607.81, p-value = 0.3277
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- -0.6238593  1.8655377
-sample estimates:
-mean of x mean of y 
- 9.789116  9.168277 </code></pre>
+<div class="tabwid"><style>.cl-cff7ace4{table-layout:auto;}.cl-cfe37d82{font-family:'Times New Roman';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-cfe37da0{font-family:'Times New Roman';font-size:12pt;font-weight:normal;font-style:italic;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-cfe37daa{font-family:'Times New Roman';font-size:7.2pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;top:3.6pt;}.cl-cfeb69d4{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 2;background-color:transparent;}.cl-cfeb9526{background-color:transparent;vertical-align: middle;border-bottom: 0.5pt solid rgba(0, 0, 0, 1.00);border-top: 0.5pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-cfeb9562{background-color:transparent;vertical-align: middle;border-bottom: 0.5pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class="cl-cff7ace4"><thead><tr style="overflow-wrap:break-word;"><th class="cl-cfeb9526"><p class="cl-cfeb69d4"><span class="cl-cfe37d82">Method</span></p></th><th class="cl-cfeb9526"><p class="cl-cfeb69d4"><span class="cl-cfe37d82">Alternative</span></p></th><th class="cl-cfeb9526"><p class="cl-cfeb69d4"><span class="cl-cfe37d82">Mean 1</span></p></th><th class="cl-cfeb9526"><p class="cl-cfeb69d4"><span class="cl-cfe37d82">Mean 2</span></p></th><th class="cl-cfeb9526"><p class="cl-cfeb69d4"><span class="cl-cfe37da0">M</span><span class="cl-cfe37daa">1</span><span class="cl-cfe37d82"> - </span><span class="cl-cfe37da0">M</span><span class="cl-cfe37daa">2</span></p></th><th class="cl-cfeb9526"><p class="cl-cfeb69d4"><span class="cl-cfe37da0">t</span></p></th><th class="cl-cfeb9526"><p class="cl-cfeb69d4"><span class="cl-cfe37da0">df</span></p></th><th class="cl-cfeb9526"><p class="cl-cfeb69d4"><span class="cl-cfe37da0">p</span></p></th><th class="cl-cfeb9526"><p class="cl-cfeb69d4"><span class="cl-cfe37d82">95% CI</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-cfeb9562"><p class="cl-cfeb69d4"><span class="cl-cfe37d82">Welch Two Sample t-test</span></p></td><td class="cl-cfeb9562"><p class="cl-cfeb69d4"><span class="cl-cfe37d82">two.sided</span></p></td><td class="cl-cfeb9562"><p class="cl-cfeb69d4"><span class="cl-cfe37d82">9.79</span></p></td><td class="cl-cfeb9562"><p class="cl-cfeb69d4"><span class="cl-cfe37d82">9.17</span></p></td><td class="cl-cfeb9562"><p class="cl-cfeb69d4"><span class="cl-cfe37d82">0.62</span></p></td><td class="cl-cfeb9562"><p class="cl-cfeb69d4"><span class="cl-cfe37d82">0.98</span></p></td><td class="cl-cfeb9562"><p class="cl-cfeb69d4"><span class="cl-cfe37d82">607.81</span></p></td><td class="cl-cfeb9562"><p class="cl-cfeb69d4"><span class="cl-cfe37d82">.328</span></p></td><td class="cl-cfeb9562"><p class="cl-cfeb69d4"><span class="cl-cfe37d82">[-0.62, 1.87]</span></p></td></tr></tbody></table></div>
 </div>
 </div>
 </section>
 </section>
-<section id="discussion-and-future-research" class="level2">
-<h2 class="anchored" data-anchor-id="discussion-and-future-research">Discussion and Future Research</h2>
-<p>There is still much more to unpack and more testing would be required. The hypothesis test was inconclusive as comparing two separate air monitor had statistical significance, but once they were averaged the p-value was too high for their to be any significance.</p>
-<p>There were many limitations to the project. Since I focused on the year 2021, I was not able to measure seasonality as it should have been. The data had some missing values which could be due to monitor malfunctioning or being broken for a period of time. It is also worth noting that PurpleAir monitors are purchased and installed by individuals and many may not be able to afford them. Therefore, we may not have air monitor data from the most disadvantage neighborhoods to the extent the wealthier neighborhoods do.</p>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<p>There is still much more to unpack and more testing would be required to make conclusions. The hypothesis test was inconclusive as comparing a wealthy neighborhood to a poor neighborhood showed statistical significance. However, once the data was averaged for all the neighborhoods being tested, the p-value was too high for there to be any significance.</p>
+<p>There were many limitations to the project. For example, I focused on the year 2021, only that one year was plotted in the classical decomposition model. Hence, this does not interpret an accurate representation of seasonality because historical data may be required for the model. Some monitors were also missing some data which could be due to monitor malfunctioning or being broken for a period of time. It is also worth noting that PurpleAir monitors are purchased and installed by individuals and many may not be able to afford them. Therefore, we may not have air monitor data from the most disadvantage neighborhoods to the extent the wealthier neighborhoods do.</p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
