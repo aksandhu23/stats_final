@@ -1,6 +1,6 @@
 # 2021 Air Quality in Oakland’s Wealthiest and Poorest Neighborhoods
 
-![image]
+![image]oakland-port-and-highway-air-pollution-map.jpg
 
 ## Project Motivation
 #### Goal
